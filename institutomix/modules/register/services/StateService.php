@@ -55,6 +55,15 @@ class StateService extends BaseService implements StateServiceInterface
     }
 
     /**
+     *  Busca todos os registros
+     * @return object
+     */
+    public function buscarEstadosRelacionados()
+    {
+        return State::find()->joinWith('cities', true, 'INNER JOIN')->orderBy('name')->all();
+    }
+
+    /**
      * Salva no db.
      * @param State $statemodel
      * @return boolean

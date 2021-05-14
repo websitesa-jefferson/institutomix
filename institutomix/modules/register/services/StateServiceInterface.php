@@ -20,6 +20,8 @@ interface StateServiceInterface
 
     function buscarTodos();
 
+    function buscarEstadosRelacionados();
+
     function salvar(State $state);
 
     function deletar($id);
