@@ -11,6 +11,7 @@ nbproject
 .buildpath
 .project
 .settings
+.php_cs.cache
 
 # windows thumbnail cache
 Thumbs.db
