@@ -51,7 +51,7 @@ class CustomerService extends BaseService implements CustomerServiceInterface
      */
     public function buscarTodos()
     {
-        return Customer::find()->orderBy('nome')->all();
+        return Customer::find()->orderBy('name')->all();
     }
 
     /**
