@@ -11,7 +11,10 @@ namespace institutomix\modules\register\controllers;
 use Yii;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 use common\bases\BaseController;
+use institutomix\modules\register\services\CityServiceInterface;
+use institutomix\modules\register\services\StateServiceInterface;
 use institutomix\modules\register\services\CustomerServiceInterface;
 
 /**
@@ -19,22 +22,30 @@ use institutomix\modules\register\services\CustomerServiceInterface;
  */
 class CustomerController extends BaseController
 {
+    private $cityService;
+    private $stateService;
     private $customerService;
 
     /**
      * Contrutor para injeção de dependencia (Serviços)
      * @param int $id
      * @param Module $module
+     * @param CityServiceInterface $cityService
+     * @param StateServiceInterface $stateService
      * @param CustomerServiceInterface $customerService
      * @param array $config
      */
     public function __construct(
         $id,
         $module,
+        CityServiceInterface $cityService,
+        StateServiceInterface $stateService,
         CustomerServiceInterface $customerService,
         $config = []
     )
     {
+        $this->cityService = $cityService;
+        $this->stateService = $stateService;
         $this->customerService = $customerService;
         parent::__construct($id, $module, $config);
     }
@@ -51,6 +62,7 @@ class CustomerController extends BaseController
         return $this->$render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'cities' => ArrayHelper::map($this->cityService->buscarTodos(), 'id', 'name_code'),
         ]);
     }
 
@@ -111,8 +123,22 @@ class CustomerController extends BaseController
                 return false;
             }
         } else {
+            $cities = ArrayHelper::map($this->cityService->buscarTodos(), 'id', 'name_code');
+            // Preenche o dropdown input via Pjax
+            if (Yii::$app->request->isPjax && Yii::$app->request->post('state_id')) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                $cities = ArrayHelper::map(
+                    $this->cityService->buscarPorEstado(Yii::$app->request->post('state_id')),
+                    'id',
+                    'name_code'
+                );
+            }
+
             return $this->renderAjax($view, [
+                'view' => $view,
                 'model' => $model,
+                'cities' => $cities,
+                'states' => ArrayHelper::map($this->stateService->buscarTodos(), 'id', 'name_code'),
             ]);
         }
     }

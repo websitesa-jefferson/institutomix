@@ -26,6 +26,8 @@ use common\bases\BaseActiveRecord;
  */
 class Customer extends BaseActiveRecord
 {
+    public $state_id;
+
     /**
      * @inheritdoc
      */
@@ -59,6 +61,7 @@ class Customer extends BaseActiveRecord
             'id' => 'Código',
             'name' => 'Nome',
             'city_id' => 'Cidade',
+            'state_id' => 'Estado',
             'created_by' => 'Criado Por',
             'created_at' => 'Criado Em',
             'updated_by' => 'Alterado Por',

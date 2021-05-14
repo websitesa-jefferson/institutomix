@@ -8,6 +8,7 @@
 
 use yii\widgets\Pjax;
 use kartik\grid\GridView;
+use kartik\select2\Select2;
 use common\helpers\ModalAjaxHelper;
 use common\widgets\OperationsModalWidget;
 
@@ -24,7 +25,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php $gridColumns = [
         ['attribute' => 'id', 'options' => ['class'=>'col-sm-1']],
         'name',
-        'city_id',
+        [
+            'attribute' => 'city_id',
+            'value' => 'state.name_code',
+            'filter' => Select2::widget([
+                'model' => $searchModel,
+                'attribute' => 'city_id',
+                'data' => $cities,
+                'options' => ['placeholder' => '« Todos »', 'class' => 'form-control'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ]
+            ])
+        ],
         ['class' => 'common\components\CrudModalActionColumn'],
         ['class' => '\kartik\grid\CheckboxColumn']
     ] ?>
