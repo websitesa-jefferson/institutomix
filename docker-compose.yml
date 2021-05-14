@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+
+  ws:
+    build: docker/.
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - db
+    volumes:
+      - ./:/app
+    env_file:
+      - ./docker/.env
+
+  db:
+    image: mysql:5.6
+    ports:
+      - "3306:3306"
+    volumes:
+      - "mysql_data:/var/lib/mysql"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - TZ=America/Sao_Paulo
+
+volumes:
+  mysql_data: {
+    driver: local
+  }
