@@ -8,8 +8,6 @@
 
 namespace common\components;
 
-use newerton\fancybox\FancyBox;
-
 class WSAHelper
 {
     /**
