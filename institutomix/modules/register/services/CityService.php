@@ -9,6 +9,7 @@
 namespace institutomix\modules\register\services;
 
 use common\bases\BaseService;
+use common\components\WSAHelper;
 use institutomix\modules\register\models\City;
 use institutomix\modules\register\models\search\CitySearch;
 
@@ -51,7 +52,7 @@ class CityService extends BaseService implements CityServiceInterface
      */
     public function buscarTodos()
     {
-        return City::find()->orderBy('nome')->all();
+        return City::find()->orderBy('name')->all();
     }
 
     /**
@@ -76,6 +77,14 @@ class CityService extends BaseService implements CityServiceInterface
         } else {
             return false;
         }
+    }
+
+    /**
+     * lista constantes
+     */
+    public function listarCapital()
+    {
+        return WSAHelper::getConstantes(City::className(), 'CAPITAL_');
     }
 
 }

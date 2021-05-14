@@ -57,14 +57,14 @@ class CitySearch extends City
         $query->andFilterWhere([
             'id' => $this->id,
             'state_id' => $this->state_id,
+            'is_capital' => $this->is_capital,
             'created_by' => $this->created_by,
             'created_at' => $this->created_at,
             'updated_by' => $this->updated_by,
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'name', array_filter(explode(' ', $this->name))])
-            ->andFilterWhere(['like', 'is_capital', array_filter(explode(' ', $this->is_capital))]);
+        $query->andFilterWhere(['like', 'name', array_filter(explode(' ', $this->name))]);
 
         return $dataProvider;
     }

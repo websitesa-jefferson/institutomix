@@ -31,14 +31,14 @@ use kartik\builder\FormGrid;
         'rows' => [
             [
                 'attributes' => [
-                      'name' => ['type' => Form::INPUT_TEXT, 'options' => ['maxlength' => true]],
-                      'state_id' => ['type' => Form::INPUT_TEXT, 'options' => ['maxlength' => true]],
-                      'is_capital' => ['type' => Form::INPUT_TEXT, 'options' => ['maxlength' => true]],
-                      'actions' => [
-                           'type' => Form::INPUT_RAW, 'value' =>
-                               Html::submitButton('Fechar', ['class' => 'btn btn-default', 'style' => 'margin-left:5px;', 'data-dismiss' => 'modal']).
-                               Html::submitButton($model->isNewRecord ? 'Criar' : 'Alterar', ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-primary pull-right'])
-                      ]
+                    'name' => ['type' => Form::INPUT_TEXT, 'options' => ['maxlength' => true]],
+                    'state_id' => ['type' => Form::INPUT_WIDGET, 'widgetClass' => '\kartik\select2\Select2', 'options' => ['data' => $states, 'options' => ['placeholder' => '« Selecione »'], 'pluginOptions' => ['allowClear' => true]]],
+                    'is_capital' => ['type' => Form::INPUT_CHECKBOX],
+                    'actions' => [
+                         'type' => Form::INPUT_RAW, 'value' =>
+                             Html::submitButton('Fechar', ['class' => 'btn btn-default', 'style' => 'margin-top:20px;', 'data-dismiss' => 'modal']).
+                             Html::submitButton($model->isNewRecord ? 'Criar' : 'Alterar', ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-primary pull-right'])
+                    ]
                 ]
             ]
         ]

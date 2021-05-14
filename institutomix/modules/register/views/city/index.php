@@ -6,6 +6,7 @@
 * @author  Jefferson C. Dias <jeffersoncosta2@hotmail.com>
 */
 
+use yii\helpers\Html;
 use yii\widgets\Pjax;
 use kartik\grid\GridView;
 use kartik\select2\Select2;
@@ -25,10 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php $gridColumns = [
         ['attribute' => 'id', 'options' => ['class'=>'col-sm-1']],
         'name',
-        'state_id',
         [
             'attribute' => 'state_id',
-            'value' => 'state.name',
+            'value' => 'state.name_code',
             'filter' => Select2::widget([
                 'model' => $searchModel,
                 'attribute' => 'state_id',
@@ -39,7 +39,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]
             ])
         ],
-        'is_capital',
+        [
+            'attribute' => 'is_capital',
+            'value' => 'str_capital',
+            'options' => ['class'=>'col-sm-2'],
+            'filter' => Html::activeDropDownList($searchModel, 'is_capital', $capital, ['class' => 'form-control', 'prompt' => '« Todos »'])
+        ],
         ['class' => 'common\components\CrudModalActionColumn'],
         ['class' => '\kartik\grid\CheckboxColumn']
     ] ?>

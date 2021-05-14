@@ -28,6 +28,11 @@ use common\bases\BaseActiveRecord;
  */
 class City extends BaseActiveRecord
 {
+    const CAPITAL_NAO = 'Não';
+    const CAPITAL_SIM = 'Sim';
+
+    public $str_capital;
+
     /**
      * @inheritdoc
      */
@@ -63,7 +68,8 @@ class City extends BaseActiveRecord
             'id' => 'Código',
             'name' => 'Nome',
             'state_id' => 'Estado',
-            'is_capital' => 'Capital',
+            'is_capital' => 'É capital?',
+            'str_capital' => 'É capital?',
             'created_by' => 'Criado Por',
             'created_at' => 'Criado Em',
             'updated_by' => 'Alterado Por',
@@ -101,6 +107,14 @@ class City extends BaseActiveRecord
     public function getAlteradoPor()
     {
         return !is_null($this->updated_by) ? $this->hasOne(User::className(), ['id' => 'updated_by']) : null;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function afterFind()
+    {
+        $this->str_capital = $this->is_capital == 1 ? 'Sim' : 'Não';
     }
 
 }

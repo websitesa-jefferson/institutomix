@@ -24,4 +24,6 @@ interface CityServiceInterface
 
     function deletar($id);
 
+    public function listarCapital();
+
 }

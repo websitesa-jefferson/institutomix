@@ -22,8 +22,8 @@ $this->title = 'Cidade';
                 'attributes' => [
                     'id',
                     'name',
-                    'state_id',
-                    'is_capital',
+                    ['attribute' => 'state.name_code', 'label' => 'Estado'],
+                    'str_capital',
                     ['label' => 'Criado Por', 'attribute' => 'cadastradoPor.fullname'],
                     'created_at:datetime',
                     ['label' => 'Alterado Por', 'attribute' => 'alteradoPor.fullname'],

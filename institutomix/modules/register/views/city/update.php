@@ -13,6 +13,7 @@ $this->title = 'Alterar Cidade' . ' ' . $model->name;
         <div class="panel-body">
             <?= $this->render('_form', [
                 'model' => $model,
+                'states' => $states,
             ]) ?>
         </div>
     </div>

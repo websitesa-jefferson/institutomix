@@ -11,6 +11,7 @@ namespace institutomix\modules\register\controllers;
 use Yii;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 use common\bases\BaseController;
 use institutomix\modules\register\services\CityServiceInterface;
 use institutomix\modules\register\services\StateServiceInterface;
@@ -21,6 +22,7 @@ use institutomix\modules\register\services\StateServiceInterface;
 class CityController extends BaseController
 {
     private $cityService;
+    private $stateService;
 
     /**
      * Contrutor para injeção de dependencia (Serviços)
@@ -55,6 +57,8 @@ class CityController extends BaseController
         return $this->$render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'capital' => $this->cityService->listarCapital(),
+            'states' => ArrayHelper::map($this->stateService->buscarTodos(), 'id', 'name_code'),
         ]);
     }
 
@@ -117,6 +121,7 @@ class CityController extends BaseController
         } else {
             return $this->renderAjax($view, [
                 'model' => $model,
+                'states' => ArrayHelper::map($this->stateService->buscarTodos(), 'id', 'name_code'),
             ]);
         }
     }
