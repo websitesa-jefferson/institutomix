@@ -1,0 +1,5 @@
+suite_namespace: institutomix\tests\functional
+actor: FunctionalTester
+modules:
+    enabled:
+        - Yii2
