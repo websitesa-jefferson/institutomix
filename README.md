@@ -28,15 +28,14 @@ composer install
 
 Ambientes para rodar migrates:
 #### Criar tabelas RBAC e Admin
-
 ~~~~
-#Executar no cliente do MySql
-CREATE DATABASE `institutomix`;
-~~~~
-~~~~
-#Acesso ao cliente do MySql
+# Acesso ao cliente do MySql
 user: root
 pass: root
+~~~~
+~~~~
+# Executar no cliente do MySql
+CREATE DATABASE `institutomix`;
 ~~~~
 Executar comandos abaixo no bash do Docker:
 ~~~~
