@@ -11,7 +11,6 @@ namespace institutomix\modules\register\controllers;
 use Yii;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
 use common\bases\BaseController;
 use institutomix\modules\register\services\StateServiceInterface;
 

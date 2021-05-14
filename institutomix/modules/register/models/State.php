@@ -26,6 +26,8 @@ use common\bases\BaseActiveRecord;
  */
 class State extends BaseActiveRecord
 {
+    public $name_code;
+
     /**
      * @inheritdoc
      */
@@ -90,6 +92,14 @@ class State extends BaseActiveRecord
     public function getAlteradoPor()
     {
         return !is_null($this->updated_by) ? $this->hasOne(User::className(), ['id' => 'updated_by']) : null;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function afterFind()
+    {
+        $this->name_code = $this->name .' - '. $this->code;
     }
 
 }

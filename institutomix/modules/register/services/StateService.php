@@ -51,7 +51,7 @@ class StateService extends BaseService implements StateServiceInterface
      */
     public function buscarTodos()
     {
-        return State::find()->orderBy('nome')->all();
+        return State::find()->orderBy('name')->all();
     }
 
     /**
