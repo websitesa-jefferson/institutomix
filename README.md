@@ -28,15 +28,32 @@ composer install
 
 Ambientes para rodar migrates:
 #### Criar tabelas RBAC e Admin
+
 ~~~~
-CREATE DATABASE `institutomix`; (Executar no cliente do MySql)
+#Executar no cliente do MySql
+CREATE DATABASE `institutomix`;
+~~~~
+~~~~
+#Acesso ao cliente do MySql
+user: root
+pass: root
+~~~~
+Executar comandos abaixo no bash do Docker:
+~~~~
 php yii-institutomix migrate-rbac
+~~~~
+~~~~
 php yii-institutomix migrate-admin
+~~~~
+~~~~
 php yii-institutomix migrate
+~~~~
+~~~~
 php yii-institutomix migrate-datas
 ~~~~
 
 #### Acessando o sistema
+Abrir o navegador e digitar os dados abaixo:
 ~~~~
 https://localhost/institutomix/web
 login: admin
