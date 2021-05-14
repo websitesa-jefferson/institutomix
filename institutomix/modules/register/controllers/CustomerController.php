@@ -125,20 +125,19 @@ class CustomerController extends BaseController
         } else {
             $cities = ArrayHelper::map($this->cityService->buscarTodos(), 'id', 'name_code');
             // Preenche o dropdown input via Pjax
-            if (Yii::$app->request->isPjax && Yii::$app->request->post('state_id')) {
+            if (Yii::$app->request->isPjax && Yii::$app->request->get('state_id')) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
-                $cities = ArrayHelper::map(
-                    $this->cityService->buscarPorEstado(Yii::$app->request->post('state_id')),
-                    'id',
-                    'name_code'
-                );
+                $cityByState = $this->cityService->buscarPorEstado(Yii::$app->request->get('state_id'));
+                if (count($cityByState)) {
+                    $cities = ArrayHelper::map($cityByState, 'id', 'name_code');
+                }
             }
 
             return $this->renderAjax($view, [
                 'view' => $view,
                 'model' => $model,
                 'cities' => $cities,
-                'states' => ArrayHelper::map($this->stateService->buscarTodos(), 'id', 'name_code'),
+                'states' => ArrayHelper::map($this->stateService->buscarEstadosRelacionados(), 'id', 'name_code'),
             ]);
         }
     }

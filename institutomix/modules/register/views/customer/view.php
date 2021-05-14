@@ -22,7 +22,7 @@ $this->title = 'Cliente';
                 'attributes' => [
                     'id',
                     'name',
-                    ['attribute' => 'name_code', 'label' => 'Cidade'],
+                    ['attribute' => 'city.name_code', 'label' => 'Cidade'],
                     ['label' => 'Criado Por', 'attribute' => 'cadastradoPor.fullname'],
                     'created_at:datetime',
                     ['label' => 'Alterado Por', 'attribute' => 'alteradoPor.fullname'],

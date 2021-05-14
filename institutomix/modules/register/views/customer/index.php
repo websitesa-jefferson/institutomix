@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'name',
         [
             'attribute' => 'city_id',
-            'value' => 'state.name_code',
+            'value' => 'city.name_code',
             'filter' => Select2::widget([
                 'model' => $searchModel,
                 'attribute' => 'city_id',

@@ -95,15 +95,16 @@ use kartik\builder\FormGrid;
 function dependentPjax(state_id) {
     if (state_id != '') {
         $.pjax.reload({
-            method: 'post',
+            method: 'get',
             push: false,
             replace: false,
             pushRedirect: true,
             replaceRedirect: false,
-            url: '".Url::to([$view])."',
+            url: '". Url::to([$view]) ."',
             container: '#city-pjax',
             timeout: false,
             data: {
+                id: '". $model->id ."',
                 state_id: state_id
             }
         });
