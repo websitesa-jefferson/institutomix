@@ -55,6 +55,8 @@ php yii-institutomix migrate-datas
 Abrir o navegador e digitar os dados abaixo:
 ~~~~
 https://localhost/institutomix/web
+~~~~
+~~~~
 login: admin
 senha: admin1
 ~~~~
