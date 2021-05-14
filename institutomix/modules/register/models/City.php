@@ -55,7 +55,7 @@ class City extends BaseActiveRecord
             [['name'], 'filter', 'filter' => 'mb_strtoupper'],
             [['is_capital'], 'string', 'max' => 3],
             [['is_capital'], 'filter', 'filter' => 'mb_strtoupper'],
-            [['name', 'state_id'], 'unique', 'targetAttribute' => ['name', 'state_id'], 'message' => 'The combination of Name and State ID has already been taken.'],
+            [['name', 'state_id'], 'unique', 'targetAttribute' => ['name', 'state_id'], 'message' => 'A combinação de "Nome" e "Estado" já existe.'],
             [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => State::className(), 'targetAttribute' => ['state_id' => 'id']]
         ];
     }

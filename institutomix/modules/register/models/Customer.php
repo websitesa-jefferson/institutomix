@@ -47,7 +47,7 @@ class Customer extends BaseActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 64],
             [['name'], 'filter', 'filter' => 'mb_strtoupper'],
-            [['name', 'city_id'], 'unique', 'targetAttribute' => ['name', 'city_id'], 'message' => 'The combination of Name and City ID has already been taken.'],
+            [['name', 'city_id'], 'unique', 'targetAttribute' => ['name', 'city_id'], 'message' => 'A combinação de "Nome" e "Cidade" já existe.'],
             [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => City::className(), 'targetAttribute' => ['city_id' => 'id']]
         ];
     }
