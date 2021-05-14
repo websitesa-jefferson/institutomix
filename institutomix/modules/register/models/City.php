@@ -31,6 +31,7 @@ class City extends BaseActiveRecord
     const CAPITAL_NAO = 'Não';
     const CAPITAL_SIM = 'Sim';
 
+    public $name_code;
     public $str_capital;
 
     /**
@@ -114,7 +115,9 @@ class City extends BaseActiveRecord
      */
     public function afterFind()
     {
+        $capital = $this->is_capital == 1 ? '(Capital)' : '';
         $this->str_capital = $this->is_capital == 1 ? 'Sim' : 'Não';
+        $this->name_code = $this->name .' - '. $this->state->code .' '. $capital;
     }
 
 }

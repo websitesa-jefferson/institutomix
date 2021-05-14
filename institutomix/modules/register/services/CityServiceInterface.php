@@ -20,6 +20,8 @@ interface CityServiceInterface
 
     function buscarTodos();
 
+    function buscarPorEstado(int $id);
+
     function salvar(City $city);
 
     function deletar($id);

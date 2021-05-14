@@ -56,6 +56,15 @@ class CityService extends BaseService implements CityServiceInterface
     }
 
     /**
+     * Busca a partir do ID do estado
+     * @return boolean
+     */
+    public function buscarPorEstado(int $id)
+    {
+        return City::find()->where(['state_id' => $id])->orderBy('name')->all();
+    }
+
+    /**
      * Salva no db.
      * @param City $citymodel
      * @return boolean
