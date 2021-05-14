@@ -2,6 +2,6 @@
 
 return [
     'State' => 'Estado',
-    'Cidade' => 'City',
-    'Cliente' => 'Customer',
+    'City' => 'Cidade',
+    'Customer' => 'Cliente',
 ];
