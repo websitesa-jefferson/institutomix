@@ -2,7 +2,7 @@
 
 ### Acessar diretório do docker:
 ~~~~
-cd yii2-advanced
+cd institutomix
 ~~~~
 
 ### Subir o container:
@@ -12,7 +12,7 @@ docker-compose up -d --build
 
 ### Acessar o terminal do container do Docker
 ~~~~
-docker exec -it yii2-advanced_ws_1 bash
+docker exec -it institutomix_ws_1 bash
 ~~~~
 
 Dependências:
