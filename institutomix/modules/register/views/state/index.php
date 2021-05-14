@@ -26,7 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'name',
         'code',
         ['class' => 'common\components\CrudModalActionColumn'],
-        ['class' => '\kartik\grid\CheckboxColumn']
+        ['class' => '\kartik\grid\CheckboxColumn', 'checkboxOptions' => function ($model, $key, $index, $column) {
+            if (count($model->cities)) {
+                return ['disabled' => true];
+            } else {
+                return [];
+            }
+        }],
     ] ?>
     <?= GridView::widget([
         'id' => 'wsaGrid',

@@ -46,7 +46,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'filter' => Html::activeDropDownList($searchModel, 'is_capital', $capital, ['class' => 'form-control', 'prompt' => '« Todos »'])
         ],
         ['class' => 'common\components\CrudModalActionColumn'],
-        ['class' => '\kartik\grid\CheckboxColumn']
+        ['class' => '\kartik\grid\CheckboxColumn', 'checkboxOptions' => function ($model, $key, $index, $column) {
+            if (count($model->customers)) {
+                return ['disabled' => true];
+            } else {
+                return [];
+            }
+        }],
     ] ?>
     <?= GridView::widget([
         'id' => 'wsaGrid',
