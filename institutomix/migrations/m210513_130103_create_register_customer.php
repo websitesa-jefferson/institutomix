@@ -20,7 +20,7 @@ class m210513_130103_create_register_customer extends \yii\db\Migration
             'updated_by' => 'INT(10) UNSIGNED NULL DEFAULT NULL',
             'updated_at' => $this->datetime(),
             'PRIMARY KEY (`id`) USING BTREE',
-            'FOREIGN KEY ([[city_id]]) REFERENCES register_city ([[id]]) ON DELETE CASCADE ON UPDATE CASCADE',
+            'FOREIGN KEY ([[city_id]]) REFERENCES register_city ([[id]]) ON DELETE NO ACTION ON UPDATE NO ACTION',
             'UNIQUE INDEX `name_city_id` (`name`, `city_id`) USING BTREE',
         ], $tableOptions);
     }

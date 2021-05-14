@@ -21,7 +21,7 @@ class m210513_130102_create_register_city extends \yii\db\Migration
             'updated_by' => 'INT(10) UNSIGNED NULL DEFAULT NULL',
             'updated_at' => $this->datetime(),
             'PRIMARY KEY (`id`) USING BTREE',
-            'FOREIGN KEY ([[state_id]]) REFERENCES register_state ([[id]]) ON DELETE CASCADE ON UPDATE CASCADE',
+            'FOREIGN KEY ([[state_id]]) REFERENCES register_state ([[id]]) ON DELETE NO ACTION ON UPDATE NO ACTION',
             'UNIQUE INDEX `name_state_id` (`name`, `state_id`) USING BTREE',
         ], $tableOptions);
     }

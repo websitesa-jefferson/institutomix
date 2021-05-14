@@ -9,10 +9,12 @@ class m190814_222542_register extends Migration
      */
     public function safeUp()
     {
-        $this->state();
+        $this->states();
+        $this->cities();
+        $this->customer();
     }
 
-    public function state()
+    public function states()
     {
         $this->execute("SET FOREIGN_KEY_CHECKS = 0;");
 
@@ -51,11 +53,43 @@ class m190814_222542_register extends Migration
         $this->execute("SET FOREIGN_KEY_CHECKS = 1;");
     }
 
+    public function cities()
+    {
+        $this->execute("SET FOREIGN_KEY_CHECKS = 0;");
+
+        $arr = [
+            ['DISTRITO FEDERAL', 7, 1],
+            ['TERESINA', 17, 0],
+            ['SÃO GONÇALO', 19, 0],
+        ];
+
+        // adiciona dados
+        $this->batchInsert('register_city', ['name', 'state_id', 'is_capital'], $arr);
+        $this->execute("SET FOREIGN_KEY_CHECKS = 1;");
+    }
+
+    public function customer()
+    {
+        $this->execute("SET FOREIGN_KEY_CHECKS = 0;");
+
+        $arr = [
+            ['MARIA DAS DORES', 1],
+            ['JORGE DA SILVA', 2],
+            ['RONALDO ALENCAR', 3],
+        ];
+
+        // adiciona dados
+        $this->batchInsert('register_customer', ['name', 'city_id'], $arr);
+        $this->execute("SET FOREIGN_KEY_CHECKS = 1;");
+    }
+
     /**
      * {@inheritdoc}
      */
     public function safeDown()
     {
+        $this->truncateTable('register_customer');
+        $this->truncateTable('register_city');
         $this->truncateTable('register_state');
     }
 }
